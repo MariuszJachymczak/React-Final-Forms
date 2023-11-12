@@ -2,16 +2,11 @@ import React, { useEffect, useState } from "react";
 import Select from "react-select";
 import makeAnimated from "react-select/animated";
 import { getFormData } from "../services/Api";
-
+import { MyMultiselectOption } from "../types/types";
 const animatedComponents = makeAnimated();
 
-interface Option {
-  value: string;
-  label: string;
-}
-
 const MyMultiSelect: React.FC = () => {
-  const [options, setOptions] = useState<Option[]>([]);
+  const [options, setOptions] = useState<MyMultiselectOption[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
