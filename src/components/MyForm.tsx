@@ -5,11 +5,7 @@ import {
   FormRenderProps,
 } from "react-final-form";
 import { postFormData } from "../services/Api";
-
-interface MyFormProps {
-  firstName: string;
-  myMultiSelect: string[];
-}
+import { MyFormProps } from "../types/types";
 
 const MyForm: React.FC = () => {
   const onSubmit = async (formValues: MyFormProps) => {
