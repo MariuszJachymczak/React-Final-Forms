@@ -8,7 +8,6 @@ import { postFormData } from "../services/Api";
 
 interface MyFormProps {
   firstName: string;
-  // Dodajemy nowe pole dla multiselecta
   myMultiSelect: string[];
 }
 
@@ -27,7 +26,6 @@ const MyForm: React.FC = () => {
       onSubmit={onSubmit}
       render={({
         handleSubmit,
-        form,
         submitting,
         pristine,
       }: FormRenderProps<MyFormProps>) => (
@@ -35,34 +33,19 @@ const MyForm: React.FC = () => {
           <Field name="firstName">
             {({ input, meta }: FieldRenderProps<string, HTMLInputElement>) => (
               <div>
-                <label>Imię</label>
+                <label>Type Something</label>
                 <input {...input} type="text" placeholder="Imię" />
                 {meta.error && meta.touched && <span>{meta.error}</span>}
+                <button
+                  type="submit"
+                  disabled={submitting || pristine}
+                  className="submit-button"
+                >
+                  Send
+                </button>
               </div>
             )}
           </Field>
-
-          {/* Pole multiselect */}
-          <Field name="myMultiSelect" component="select" multiple>
-            {({ input, meta }) => (
-              <div>
-                <label>Wybierz opcje</label>
-                <select {...input}>
-                  <option value="opcja1">Opcja 1</option>
-                  <option value="opcja2">Opcja 2</option>
-                  <option value="opcja3">Opcja 3</option>
-                  {/* Dodaj więcej opcji według potrzeb */}
-                </select>
-                {meta.error && meta.touched && <span>{meta.error}</span>}
-              </div>
-            )}
-          </Field>
-
-          <div>
-            <button type="submit" disabled={submitting || pristine}>
-              Wyślij
-            </button>
-          </div>
         </form>
       )}
     />
